@@ -54,18 +54,18 @@ public class Dice {
     }
 
     public int rollDice(){
-        int value1 = rand.nextInt(6) + 1;
+        this.value1 = rand.nextInt(6) + 1;
         return value1;
     }
     public int rollTwoDice() {
-        int value1 = rand.nextInt(6) + 1;
-        int value2 = rand.nextInt(6) + 1;
+        this.value1 = rand.nextInt(6) + 1;
+        this.value2 = rand.nextInt(6) + 1;
         return value1 + value2;
     }
-    public int getValue(){
+    public int getValue() {
         return this.value1;
     }
-    public int getValue2(){
+    public int getValue2() {
         return this.value2;
     }
 }
