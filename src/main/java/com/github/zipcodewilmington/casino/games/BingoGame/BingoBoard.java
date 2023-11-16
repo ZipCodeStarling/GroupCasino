@@ -51,18 +51,37 @@ public class BingoBoard {
 
     }
 
+
+    // Checking to see if there is a winner in only columns or rows, no diagonal.
     public boolean isWinner() {
-        final String[] bingoLetters = "BINGO".split("");
+        final String[] bingoLetters = "BINGO".split(""); // Bingo header and it's splitting each letter to create columns
         for (int currentBingoRowIndex = 0; currentBingoRowIndex < bingoLetters.length; currentBingoRowIndex++) {
             final String letter = bingoLetters[currentBingoRowIndex];
 
-            // column evaluation
+            // Column Evaluation
             final Character currentBingoLetter = letter.charAt(0);
             final List<String> currentBingoColumn = getColumn(currentBingoLetter);
             final List<Boolean> columnValues = getValueOfKeys(currentBingoColumn);
             final int numberOfUniqueColumns = new HashSet<>(columnValues).size();
+            final boolean hasCellsMarkedColumn = columnValues.get(0);
+            final boolean isHomogenousColumn = numberOfUniqueColumns == 1;
+            final boolean isWinningAtLeastOneColumn = isHomogenousColumn && hasCellsMarkedColumn;
 
+            // Row Evaluation
+            final List<String> currentBingoRow = getRow(currentBingoRowIndex);
+            final List<Boolean> rowValues = getValueOfKeys(currentBingoRow);
+            final int numberOfUniqueRowValues = new HashSet<>(rowValues).size();
+            final boolean hasCellsMarkedRow = rowValues.get(0);
+            final boolean isHomogenousRow = numberOfUniqueRowValues == 1;
+            final boolean isWinningAtLeastOneRow = isHomogenousRow && hasCellsMarkedRow;
+
+            // Conclusion
+            final boolean isWinning = isWinningAtLeastOneColumn || isWinningAtLeastOneRow;
+            if (isWinning) {
+                return  true;
+            }
         }
+        return false;
     }
 //    public List<String> getColumn(char b) {
 //        return null;
