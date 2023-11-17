@@ -6,8 +6,8 @@ import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanGame;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanPlayer;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
-import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
+//import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
+//import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -36,9 +36,9 @@ public class Casino implements Runnable {
                         play(new SlotsGame(), new SlotsPlayer(casinoAccount));
                     } else if (gameSelectionInput.equalsIgnoreCase("NUMBERGUESS")) {
 
-                     NumberGuessPlayer numberGuessPlayer = new NumberGuessPlayer(casinoAccount);
-                     NumberGuessGame numberGuessGame =new NumberGuessGame(numberGuessPlayer);
-                     numberGuessGame.run();
+//                     NumberGuessPlayer numberGuessPlayer = new NumberGuessPlayer(casinoAccount);
+//                     NumberGuessGame numberGuessGame =new NumberGuessGame(numberGuessPlayer);
+//                     numberGuessGame.run();
                     } else if (gameSelectionInput.equalsIgnoreCase("CHOHAN")) {
                         play(new ChoHanGame(), new ChoHanPlayer(casinoAccount));
                     } else {
