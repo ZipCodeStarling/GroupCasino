@@ -4,6 +4,8 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackGame;
+import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanGame;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanPlayer;
 //import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
@@ -34,11 +36,11 @@ public class Casino implements Runnable {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equalsIgnoreCase("SLOTS")) {
                         play(new SlotsGame(), new SlotsPlayer(casinoAccount));
-                    } else if (gameSelectionInput.equalsIgnoreCase("NUMBERGUESS")) {
+                    } else if (gameSelectionInput.equalsIgnoreCase("BLACKJACK")) {
 
-//                     NumberGuessPlayer numberGuessPlayer = new NumberGuessPlayer(casinoAccount);
-//                     NumberGuessGame numberGuessGame =new NumberGuessGame(numberGuessPlayer);
-//                     numberGuessGame.run();
+                        BlackJackPlayer blackJackPlayer = new BlackJackPlayer(casinoAccount);
+                    BlackJackGame blackJackGame =new BlackJackGame(blackJackPlayer);
+                    blackJackGame.playRound();
                     } else if (gameSelectionInput.equalsIgnoreCase("CHOHAN")) {
                         play(new ChoHanGame(), new ChoHanPlayer(casinoAccount));
                     } else {
