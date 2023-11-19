@@ -8,8 +8,12 @@ import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackGame;
 import com.github.zipcodewilmington.casino.games.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanGame;
 import com.github.zipcodewilmington.casino.games.ChoHan.ChoHanPlayer;
-//import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
-//import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
+import com.github.zipcodewilmington.casino.games.BingoGame.BingoGame;
+import com.github.zipcodewilmington.casino.games.BingoGame.BingoPlayer;
+import com.github.zipcodewilmington.casino.games.Craps.CrapsGame;
+import com.github.zipcodewilmington.casino.games.Craps.CrapsPlayer;
+import com.github.zipcodewilmington.casino.games.SimplifiedWar.SimplifiedWarGame;
+import com.github.zipcodewilmington.casino.games.SimplifiedWar.SimplifiedWarPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -38,11 +42,19 @@ public class Casino implements Runnable {
                         play(new SlotsGame(), new SlotsPlayer(casinoAccount));
                     } else if (gameSelectionInput.equalsIgnoreCase("BLACKJACK")) {
 
+
                         BlackJackPlayer blackJackPlayer = new BlackJackPlayer(casinoAccount);
                     BlackJackGame blackJackGame =new BlackJackGame(blackJackPlayer);
                     blackJackGame.playRound();
+
                     } else if (gameSelectionInput.equalsIgnoreCase("CHOHAN")) {
                         play(new ChoHanGame(), new ChoHanPlayer(casinoAccount));
+                    } else if (gameSelectionInput.equalsIgnoreCase("WAR")) {
+                        play(new SimplifiedWarGame(), new SimplifiedWarPlayer(casinoAccount));
+                    } else if (gameSelectionInput.equalsIgnoreCase("CRAPS")) {
+                        play(new CrapsGame(), new CrapsPlayer(casinoAccount));
+                    } else if (gameSelectionInput.equalsIgnoreCase("BINGO")) {
+                        play(new BingoGame(), new BingoPlayer(casinoAccount));
                     } else {
                         // TODO - implement better exception handling
                         System.out.println(arcadeDashBoardInput + " is an invalid game selection");
@@ -63,7 +75,6 @@ public class Casino implements Runnable {
                 } else {
                     System.out.println("This accounts exists, please try again");
                 }
-
             }
         } while (!"logout".equalsIgnoreCase(arcadeDashBoardInput));
         casinoAccountManager.saveToFile();
@@ -71,7 +82,20 @@ public class Casino implements Runnable {
 
     private String getArcadeDashboardInput() {
         return console.getStringInput(new StringBuilder()
-                .append("Welcome to the Arcade Dashboard!")
+                        .append("\n" +
+                                "  ______    __                          __  __                                   ______                       __                     \n" +
+                                " /      \\  /  |                        /  |/  |                                 /      \\                     /  |                    \n" +
+                                "/$$$$$$  |_$$ |_     ______    ______  $$ |$$/  _______    ______              /$$$$$$  |  ______    _______ $$/  _______    ______  \n" +
+                                "$$ \\__$$// $$   |   /      \\  /      \\ $$ |/  |/       \\  /      \\             $$ |  $$/  /      \\  /       |/  |/       \\  /      \\ \n" +
+                                "$$      \\$$$$$$/    $$$$$$  |/$$$$$$  |$$ |$$ |$$$$$$$  |/$$$$$$  |            $$ |       $$$$$$  |/$$$$$$$/ $$ |$$$$$$$  |/$$$$$$  |\n" +
+                                " $$$$$$  | $$ | __  /    $$ |$$ |  $$/ $$ |$$ |$$ |  $$ |$$ |  $$ |            $$ |   __  /    $$ |$$      \\ $$ |$$ |  $$ |$$ |  $$ |\n" +
+                                "/  \\__$$ | $$ |/  |/$$$$$$$ |$$ |      $$ |$$ |$$ |  $$ |$$ \\__$$ |            $$ \\__/  |/$$$$$$$ | $$$$$$  |$$ |$$ |  $$ |$$ \\__$$ |\n" +
+                                "$$    $$/  $$  $$/ $$    $$ |$$ |      $$ |$$ |$$ |  $$ |$$    $$ |            $$    $$/ $$    $$ |/     $$/ $$ |$$ |  $$ |$$    $$/ \n" +
+                                " $$$$$$/    $$$$/   $$$$$$$/ $$/       $$/ $$/ $$/   $$/  $$$$$$$ |             $$$$$$/   $$$$$$$/ $$$$$$$/  $$/ $$/   $$/  $$$$$$/  \n" +
+                                "                                                         /  \\__$$ |                                                                  \n" +
+                                "                                                         $$    $$/                                                                   \n" +
+                                "                                                          $$$$$$/                                                                    \n")
+                .append("\nWelcome to the Casino Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
                 .append("\n\t[ create account ], [ select game ], [ logout ]")
                 .toString());
@@ -92,4 +116,3 @@ public class Casino implements Runnable {
         game.run();
     }
 }
-
